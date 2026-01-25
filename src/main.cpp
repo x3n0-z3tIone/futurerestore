@@ -11,6 +11,7 @@
 
 extern "C"{
 #include "tsschecker.h"
+#include <libtatsu/tss.h>
 extern void restore_set_ignore_bb_fail(int input);
 };
 
@@ -291,6 +292,7 @@ int main_r(int argc, const char * argv[]) {
                 break;
             case 'd': // long option: "debug"; can be called as short option
                 idevicerestore_debug = 1;
+                tss_set_debug_level(3);
                 break;
             default:
                 cmd_help();
@@ -389,7 +391,7 @@ int main_r(int argc, const char * argv[]) {
             }
             goto error;
         }
-
+        client.setIPSWPath(ipsw);
         devVals.deviceModel = (char*)client.getDeviceModelNoCopy();
         devVals.deviceBoard = (char*)client.getDeviceBoardNoCopy();
 

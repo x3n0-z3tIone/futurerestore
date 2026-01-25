@@ -2725,8 +2725,18 @@ void futurerestore::downloadLatestFirmwareComponents() {
     if (elemExists("Yonkers,PatchEpoch", manifeststr, getDeviceBoardNoCopy(), 0))
         downloadLatestYonkers();
     const char *disableLatest = std::getenv("IDR_DISABLE_LATEST_CRYPTEX");
-    if(!disableLatest && elemExists("Cryptex1,SystemOS", manifeststr, getDeviceBoardNoCopy(), 0))
-        downloadLatestCryptex1();
+    if(!disableLatest) {
+      ipsw_archive_t ipsw_tmp = ipsw_open(_ipsw_path);
+      int unused = 0;
+      plist_t bm = nullptr;
+      if(!ipsw_extract_build_manifest(ipsw_tmp, &bm, &unused) && bm) {
+        build_manifest_get_version_information(bm, _client);
+        if((_client->version && strlen(_client->version) > 0 && (strncmp(_client->version, "16.", 3) >= 0)) && elemExists("Cryptex1,SystemOS", manifeststr, getDeviceBoardNoCopy(), 0)) {
+          downloadLatestCryptex1();
+        }
+      }
+      ipsw_close(ipsw_tmp);
+    }
     info("Finished downloading the latest firmware components!\n");
 }
 

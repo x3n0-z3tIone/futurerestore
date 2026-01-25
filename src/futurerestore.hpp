@@ -105,6 +105,8 @@ class futurerestore {
     const char *_custom_nonce = nullptr;
     const char *_boot_args = nullptr;
 
+    const char *_ipsw_path = nullptr;
+
     bool _noCache = false;
     bool _skipBlob = false;
 
@@ -184,6 +186,7 @@ public:
     void setKernelPath(std::string kernelPath) {_kernelPath = std::move(kernelPath);}
     void setBasebandPath(std::string basebandPath) {_basebandPath = std::move(basebandPath);}
     void setBasebandManifestPath(std::string basebandManifestPath) {_basebandManifestPath = std::move(basebandManifestPath);}
+    void setIPSWPath(const char *ipsw_path){_ipsw_path = ipsw_path;};
     void setNonce(const char *custom_nonce){_custom_nonce = custom_nonce;};
     void setBootArgs(const char *boot_args){_boot_args = boot_args;};
     void disableCache(){_noCache = true;};

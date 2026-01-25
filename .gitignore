@@ -74,3 +74,4 @@ Testing
 *.cbp
 cmake-build-relwithdebinfo
 cmake/
+.clang-format
