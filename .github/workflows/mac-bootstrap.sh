@@ -12,8 +12,6 @@ curl -sO https://cdn.cryptiiiic.com/deps/static/macOS/arm64/macOS_arm64_Release_
 curl -sO https://cdn.cryptiiiic.com/deps/static/macOS/x86_64/macOS_x86_64_Debug_Latest.tar.zst &
 curl -sO https://cdn.cryptiiiic.com/deps/static/macOS/arm64/macOS_arm64_Debug_Latest.tar.zst &
 wait
-echo "PATH: $PATH"
-HOMEBREW_NO_AUTO_UPDATE=1 brew install gnu-tar
 sudo gtar xf ${WORKFLOW_ROOT}/bootstrap_x86_64.tar.zst -C / --warning=none || true || true &
 echo "${PROCURSUS}/bin" | sudo tee /etc/paths1
 echo "${PROCURSUS}/libexec/gnubin" | sudo tee /etc/paths1
