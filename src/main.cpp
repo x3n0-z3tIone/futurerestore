@@ -85,8 +85,7 @@ static struct option longopts[] = {
 #define FLAG_IGNORE_BB_FAIL         1 << 20
 
 bool manual = false;
-
-void cmd_help(){
+void cmd_help() {
     info("Usage: futurerestore [OPTIONS] iPSW\n");
     info("Allows restoring to non-matching firmware with custom SEP+baseband\n");
     info("\nGeneral options:\n");
